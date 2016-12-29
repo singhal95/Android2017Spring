@@ -16,6 +16,10 @@ public class Student {
         this.course = course;
     }
 
+    public Integer incrementAge () {
+       return ++age;
+    }
+
     public String getName() {
         return name;
     }
