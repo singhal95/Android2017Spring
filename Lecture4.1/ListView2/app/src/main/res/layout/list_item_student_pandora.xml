@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="20dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:id="@+id/tvName"
+        android:text="Student Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:padding="5dp"
+        android:textSize="26dp"
+        android:id="@+id/tvAge"
+        android:text="20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:padding="5dp"
+        android:textSize="24dp"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/tvCourse"
+        android:text="Pandora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
