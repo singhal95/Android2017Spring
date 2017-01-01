@@ -26,10 +26,12 @@ public class BlueFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                // call showToast() function
                 if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).showToast();
+                    ((MainActivity) getActivity()).shiftCounter(1);
+
                 }
+
+
 
 
 

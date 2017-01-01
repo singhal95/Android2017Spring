@@ -26,7 +26,10 @@ public class RedFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                // call showToast() function
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).shiftCounter(-1);
+
+                }
 
             }
         });
