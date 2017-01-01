@@ -13,6 +13,13 @@ public class DynamicFragmentActivity extends AppCompatActivity implements View.O
     FragmentManager fragManager;
     FragmentTransaction fragTxn;
 
+    public static final int FRAG_RED = 0;
+    public static final int FRAG_BLUE = 1;
+
+    int fragType = FRAG_BLUE;
+
+
+
 
 
     @Override
@@ -27,7 +34,24 @@ public class DynamicFragmentActivity extends AppCompatActivity implements View.O
 
         fragManager = getSupportFragmentManager();
 
+        if (savedInstanceState != null) {
+            fragType = savedInstanceState.getInt("fragType");
+        }
 
+
+        setFragment(fragType);
+
+
+    }
+
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putInt("fragType", fragType);
+
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -35,15 +59,30 @@ public class DynamicFragmentActivity extends AppCompatActivity implements View.O
         switch (v.getId()) {
             case R.id.btnBlue:
                 // attach fragment blue
-                BlueFragment blueFragment = new BlueFragment();
-                fragTxn = fragManager.beginTransaction();
-                fragTxn.replace(R.id.flFragContainer, blueFragment);
-                fragTxn.commit();
+                setFragment(FRAG_BLUE);
                 break;
             case R.id.btnRed:
                 // attach fragment red
-                RedFragment redFragment = new RedFragment();
-                fragManager.beginTransaction().replace(R.id.flFragContainer, redFragment).commit();
+                setFragment(FRAG_RED);
+                break;
+        }
+    }
+
+    void setFragment (int fragmentType) {
+
+        fragType  = fragmentType;
+
+        switch (fragmentType) {
+            case FRAG_BLUE:
+                fragManager.beginTransaction()
+                        .replace(R.id.flFragContainer, new BlueFragment())
+                        .commit();
+                break;
+
+            case FRAG_RED:
+                fragManager.beginTransaction()
+                        .replace(R.id.flFragContainer, new RedFragment())
+                        .commit();
                 break;
         }
     }
