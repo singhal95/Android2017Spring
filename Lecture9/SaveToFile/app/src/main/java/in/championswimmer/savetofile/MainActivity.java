@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,16 +54,13 @@ public class MainActivity extends AppCompatActivity {
         try {
             fInStr = new FileInputStream(fileToRead);
             InputStreamReader iStrRd = new InputStreamReader(fInStr);
+            BufferedReader bufRdr = new BufferedReader(iStrRd);
             StringBuilder sBuilder = new StringBuilder();
-            char[] charBuf = new char[10];
-            boolean end = false;
-            while (!end) {
-                if (iStrRd.read(charBuf) == -1 ) {
-                    end = true;
-                    break;
-                };
-                sBuilder.append(charBuf);
+            String str = "";
+            while ((str = bufRdr.readLine()) != null) {
+                sBuilder.append(str).append('\n');
             }
+
             return sBuilder.toString();
 
 
@@ -81,8 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
         File fileToWrite = new File(filesDir, fileName);
         try {
-            fOutStr = new FileOutputStream(fileToWrite);
+            fOutStr = new FileOutputStream(fileToWrite, true);
             fOutStr.write(data.getBytes());
+            fOutStr.write('\n');
+            fOutStr.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
